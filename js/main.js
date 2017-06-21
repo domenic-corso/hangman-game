@@ -16,7 +16,9 @@ function _sample1() {
     let UI = null;
     let uiCallback = new UICallback(UI);
     
-    let guess = new Guess(uiCallback);
+    let gameMode = new SinglePlayerGame(SinglePlayerGame.Difficulties.EASY);
+    
+    let guess = new Guess(uiCallback, gameMode);
     
     guess.setWord(myWord, myHints);
 }

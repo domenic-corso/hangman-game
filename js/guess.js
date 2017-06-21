@@ -1,5 +1,6 @@
-function Guess(uiCallback) {
+function Guess(uiCallback, gameMode) {
     this.uiCallback = uiCallback;
+    this.gameMode = gameMode;
     
     this.word = "";
     this.guessableLetters = 0;
@@ -16,6 +17,9 @@ Guess.prototype.setWord = function(word, hints) {
     this.word = word;
     this.hintsRemaining = hints;
     this.uiCallback.updateGuess(this);
+    
+    console.log("SET WORD: " + word);
+    console.log("SET HINTS: " + hints);
 };
 
 /*
@@ -36,6 +40,9 @@ Guess.prototype.tryLetter = function(letter) {
     
     A player has guessed all the letters if 'guessableLetters' is equal to 
     'revealedLetters'.
+    
+    If a game mode is given, it should also be alerted that the guess is has
+    now finished.
 */
 Guess.prototype.checkForCompletion = function() {
     
