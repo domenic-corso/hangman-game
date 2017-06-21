@@ -10,7 +10,7 @@ function runHangman() {
 }
 
 function _sample1() {
-    let myWord = "house";
+    let myWord = "note book";
     let myHints = 1;
     
     let UI = null;

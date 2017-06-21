@@ -26,13 +26,40 @@ Guess.LetterStates = {
     SPACE: 3
 };
 
+/*
+    Acting like an initialization for the a Guess object, setWord() sets the
+    word for this guess as well as defining values for other properties that
+    are based off the word.
+    
+    Steps:
+        1. Validate the word and return true/false based on.
+        2. Set the word and hint property based on paramaters passed in.
+        3. Initialize the 'wordProgress' array to match the word. For example,
+           the word "note book" would initialize 'wordProgress' as:
+                [NG,NG,NG,NG,SP,NG,NG,NG,NG] (refer to Guess.LetterStates)
+*/
 Guess.prototype.setWord = function(word, hints) {
     this.word = word;
     this.hintsRemaining = hints;
+    
+    for (let i = 0; i < this.word.length; i++) {
+        let letterState;
+        
+        if (this.word[i] == " ") {
+            letterState = Guess.LetterStates.SPACE;
+        }
+        else {
+            letterState = Guess.LetterStates.NOT_GUESSED;
+        }
+        
+        this.wordProgress[i] = letterState;
+    }
+    
     this.uiCallback.updateGuess(this);
     
     console.log("SET WORD: " + word);
     console.log("SET HINTS: " + hints);
+    console.log("WORD PROGRESS: " + this.wordProgress);
 };
 
 /*
@@ -44,7 +71,7 @@ Guess.prototype.setWord = function(word, hints) {
     revealed however only one should be added to the 'correctLetters' array.
 */
 Guess.prototype.tryLetter = function(letter) {
-    
+    console.log("TRYING LETTER: " + letter);
 };
 
 /*
@@ -58,7 +85,7 @@ Guess.prototype.tryLetter = function(letter) {
     now finished.
 */
 Guess.prototype.checkForCompletion = function() {
-    
+    console.log("COMPLETION RESULT: " + this.complete);
 };
 
 /*
@@ -66,5 +93,5 @@ Guess.prototype.checkForCompletion = function() {
     'tryLetter()' method which will handle the rest.
 */
 Guess.prototype.hint = function() {
-    
+    console.log("PERFORMING HINT");
 };
