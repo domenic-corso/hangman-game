@@ -1,0 +1,1 @@
+A simple Hangman game written in HTML, CSS and JS.
