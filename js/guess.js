@@ -7,11 +7,24 @@ function Guess(uiCallback, gameMode) {
     this.revealedLetters = 0;
     this.hintsRemaining = 0;
     
+    this.wordProgress = [];
+    
     this.incorrectLetters = [];
     this.correctLetters = [];
     
-    this.guessed = false;
+    this.complete = false;
 }
+
+/*
+    A letter can either be not guessed, guessed or be a space character. This
+    enum-style object combined with the 'wordProgress' is useful for the UI to 
+    display which letters have been guessed.
+*/
+Guess.LetterStates = {
+    GUESSED: 1,
+    NOT_GUESSED: 2,
+    SPACE: 3
+};
 
 Guess.prototype.setWord = function(word, hints) {
     this.word = word;
