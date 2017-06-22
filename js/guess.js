@@ -16,6 +16,9 @@ function Guess(uiCallback, gameMode) {
     this.complete = false;
 }
 
+/* You need to have >= MIN_LEFT_TO_HINT letters left to guess to hint() */
+Guess.MIN_LEFT_TO_HINT = 2;
+
 /*
     A letter can either be not guessed, guessed or be a space character. This
     enum-style object combined with the 'wordProgress' is useful for the UI to 
@@ -25,6 +28,13 @@ Guess.LetterStates = {
     GUESSED: 1,
     NOT_GUESSED: 2,
     SPACE: 3
+};
+
+/*
+    See Guess.MIN_LEFT_TO_HINT for description.
+*/
+Guess.prototype.tooLateToUseHint = function() {
+    return (this.leftToGuess < Guess.MIN_LEFT_TO_HINT);
 };
 
 /*
@@ -38,12 +48,14 @@ Guess.LetterStates = {
         3. Initialize the 'wordProgress' array to match the word. For example,
            the word "note book" would initialize 'wordProgress' as:
                 [NG,NG,NG,NG,SP,NG,NG,NG,NG] (refer to Guess.LetterStates)
+    
+    This function will return true on success and false on failure.
 */
 Guess.prototype.setWord = function(word, hints) {
     /* Ensure a valid word has been given */
     if (!HangmanHelper.isValidWord(word)) {
         console.error("An invalid word was given: " + word);
-        return;
+        return false;
     }
     
     /* Assign property values */
@@ -81,6 +93,8 @@ Guess.prototype.setWord = function(word, hints) {
     this.leftToGuess = this.guessableLetters;
     
     this.uiCallback.updateGuess(this);
+    
+    return true;
 };
 
 /*
@@ -100,6 +114,12 @@ Guess.prototype.tryLetter = function(letter) {
     /* Ensure a letter is given. */
     if (!HangmanHelper.isLetter(letter)) {
         console.error("A letter was not given.");
+        return;
+    }
+    
+    /* Don't do anything if the word has already been guessed */
+    if (this.complete) {
+        console.error("All the letters have already been guessed!");
         return;
     }
     
@@ -163,5 +183,39 @@ Guess.prototype.checkForCompletion = function() {
     'tryLetter()' method which will handle the rest.
 */
 Guess.prototype.hint = function() {
+    /* Player can't use hint if they haven't got any hints left. */
+    if (this.hintsRemaining == 0) {
+        console.error("No hints remaining.");
+        return;
+    }
     
+    /* No point in using a hint if the word has already been guessed. */
+    if (this.complete) {
+        console.error("The word has already been guessed.");
+        return;
+    }
+    
+    /* Refer to tooLateToUseHint() */
+    if (this.tooLateToUseHint()) {
+        console.error("It is too late to use a hint.");
+    }
+    
+    let randomIndex, randomLetter;
+    
+    /* Find all letters that have not been guessed yet. */
+    let unguessedLetters = [];
+    for (let i = 0; i < this.wordProgress.length; i++) {
+        if (this.wordProgress[i] == Guess.LetterStates.NOT_GUESSED) {
+            unguessedLetters.push(this.word[i]);
+        }
+    }
+    
+    /* Choose a letter at random */
+    randomIndex = Math.floor(Math.random() * unguessedLetters.length);
+    randomLetter = unguessedLetters[randomIndex];
+    
+    this.hintsRemaining--;
+    
+    /* Pass this letter to tryLetter() */
+    this.tryLetter(randomLetter);
 };
