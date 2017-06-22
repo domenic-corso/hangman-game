@@ -3,12 +3,13 @@ function Guess(uiCallback, gameMode) {
     this.gameMode = gameMode;
     
     this.word = "";
-    this.guessableLetters = 0;
-    this.revealedLetters = 0;
     this.hintsRemaining = 0;
     
-    this.wordProgress = [];
+    this.guessableLetters = 0;
+    this.revealedLetters = 0;
+    this.leftToGuess = 0;
     
+    this.wordProgress = [];
     this.incorrectLetters = [];
     this.correctLetters = [];
     
@@ -62,11 +63,24 @@ Guess.prototype.setWord = function(word, hints) {
         this.wordProgress[i] = letterState;
     }
     
-    this.uiCallback.updateGuess(this);
+    /*
+        Find out how many letters in the word are guessable. This would
+        essentially just be (number of letters - number of spaces).
+    */
     
-    console.log("SET WORD: " + word);
-    console.log("SET HINTS: " + hints);
-    console.log("WORD PROGRESS: " + this.wordProgress);
+    for (let i = 0; i < this.word.length; i++) {
+        if (HangmanHelper.isLetter(this.word[i])) {
+            this.guessableLetters++;
+        }
+    }
+    
+    /*
+        At the start, the amount of letters left to guess is equal to how
+        many are guessable.
+    */
+    this.leftToGuess = this.guessableLetters;
+    
+    this.uiCallback.updateGuess(this);
 };
 
 /*
@@ -78,13 +92,52 @@ Guess.prototype.setWord = function(word, hints) {
     revealed however only one should be added to the 'correctLetters' array.
 */
 Guess.prototype.tryLetter = function(letter) {
-    console.log("TRYING LETTER: " + letter);
+    let matchFound = false;
+    
+    /* Before using the letter, ensure it is lowercase */
+    letter = letter.toLowerCase();
     
     /* Ensure a letter is given. */
     if (!HangmanHelper.isLetter(letter)) {
         console.error("A letter was not given.");
         return;
     }
+    
+    /* Don't do anything if this letter has already been given */
+    if (this.incorrectLetters.indexOf(letter) >= 0
+        || this.correctLetters.indexOf(letter) >= 0) {
+        console.error("This letter has already been guessed.");
+        return;
+    }
+    
+    /* Try to find a match (or multiple) */
+    for (let i = 0; i < this.word.length; i++) {
+        if (letter == this.word[i]) {
+            /* Set the state of this letter to guessed */
+            this.wordProgress[i] = Guess.LetterStates.GUESSED;
+            
+            /* Update how many letters have been revealed (+1) */
+            this.revealedLetters++;
+            
+            /* Work out how many letters there are left to guess */
+            this.leftToGuess = this.guessableLetters - this.revealedLetters;
+            
+            /* Add this letter to the array of correctly-guessed letters */
+            if (this.correctLetters.indexOf(letter) == -1) {
+                this.correctLetters.push(letter);
+            }
+            
+            /* We know that for this letter, there was at least one match */
+            matchFound = true;
+        }
+    }
+    
+    if (!matchFound) {
+        this.incorrectLetters.push(letter);
+    }
+    
+    /* Check and see if the player has now guessed all the letters */
+    this.checkForCompletion();
     
     this.uiCallback.updateGuess(this);
 };
@@ -100,7 +153,9 @@ Guess.prototype.tryLetter = function(letter) {
     now finished.
 */
 Guess.prototype.checkForCompletion = function() {
-    console.log("COMPLETION RESULT: " + this.complete);
+    if (this.revealedLetters == this.guessableLetters) {
+        this.complete = true;
+    }
 };
 
 /*
@@ -108,5 +163,5 @@ Guess.prototype.checkForCompletion = function() {
     'tryLetter()' method which will handle the rest.
 */
 Guess.prototype.hint = function() {
-    console.log("PERFORMING HINT");
+    
 };
