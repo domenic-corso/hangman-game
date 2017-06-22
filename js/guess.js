@@ -39,17 +39,24 @@ Guess.LetterStates = {
                 [NG,NG,NG,NG,SP,NG,NG,NG,NG] (refer to Guess.LetterStates)
 */
 Guess.prototype.setWord = function(word, hints) {
-    this.word = word;
+    /* Ensure a valid word has been given */
+    if (!HangmanHelper.isValidWord(word)) {
+        console.error("An invalid word was given: " + word);
+        return;
+    }
+    
+    /* Assign property values */
+    this.word = word.trim();
     this.hintsRemaining = hints;
     
+    /* Setup 'wordProgress' array. */
     for (let i = 0; i < this.word.length; i++) {
-        let letterState;
+        /* Assume the character is a letter. */
+        let letterState = Guess.LetterStates.NOT_GUESSED;
         
+        /* Check if character is a space. */
         if (this.word[i] == " ") {
             letterState = Guess.LetterStates.SPACE;
-        }
-        else {
-            letterState = Guess.LetterStates.NOT_GUESSED;
         }
         
         this.wordProgress[i] = letterState;
@@ -72,6 +79,14 @@ Guess.prototype.setWord = function(word, hints) {
 */
 Guess.prototype.tryLetter = function(letter) {
     console.log("TRYING LETTER: " + letter);
+    
+    /* Ensure a letter is given. */
+    if (!HangmanHelper.isLetter(letter)) {
+        console.error("A letter was not given.");
+        return;
+    }
+    
+    this.uiCallback.updateGuess(this);
 };
 
 /*

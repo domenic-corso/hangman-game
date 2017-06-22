@@ -5,12 +5,14 @@
 
 window.onload = runHangman;
 
+testGuess1 = null;
+
 function runHangman() {
     _sample1();
 }
 
 function _sample1() {
-    let myWord = "note book";
+    let myWord = "nice book";
     let myHints = 1;
     
     let UI = null;
@@ -18,7 +20,7 @@ function _sample1() {
     
     let gameMode = new SinglePlayerGame(SinglePlayerGame.Difficulties.EASY);
     
-    let guess = new Guess(uiCallback, gameMode);
+    testGuess1 = new Guess(uiCallback, gameMode);
     
-    guess.setWord(myWord, myHints);
+    testGuess1.setWord(myWord, myHints);
 }
