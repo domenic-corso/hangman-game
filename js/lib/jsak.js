@@ -59,7 +59,7 @@ JSAK.AJAX.httpGET = function(addr, params, callback) {
     /* Loop through each given parameter and add it to query string. */
 	for (p in params) {
 		if (params.hasOwnProperty(p)) {
-			paramString += p + "=" + params[p] + "&";
+			queryString += p + "=" + params[p] + "&";
 		}
 	}
 
