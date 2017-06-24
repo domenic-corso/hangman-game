@@ -11,6 +11,12 @@ testSP1 = null;
 
 function runHangman() {
     _sample2();
+    
+    
+}
+
+function showGUI() {
+    
 }
 
 function _sample1() {
