@@ -8,6 +8,7 @@ function Guess(uiCallback, gameMode) {
     this.guessableLetters = 0;
     this.revealedLetters = 0;
     this.leftToGuess = 0;
+    this.chancesLeft = 6;
     
     this.wordProgress = [];
     this.incorrectLetters = [];
@@ -106,6 +107,8 @@ Guess.prototype.setWord = function(word, hints) {
     revealed however only one should be added to the 'correctLetters' array.
 */
 Guess.prototype.tryLetter = function(letter) {
+    if (this.completeOrOutOfChances()) return;
+    
     let matchFound = false;
     
     /* Before using the letter, ensure it is lowercase */
@@ -114,12 +117,6 @@ Guess.prototype.tryLetter = function(letter) {
     /* Ensure a letter is given. */
     if (!HangmanHelper.isLetter(letter)) {
         console.error("A letter was not given.");
-        return;
-    }
-    
-    /* Don't do anything if the word has already been guessed */
-    if (this.complete) {
-        console.error("All the letters have already been guessed!");
         return;
     }
     
@@ -152,8 +149,10 @@ Guess.prototype.tryLetter = function(letter) {
         }
     }
     
+    /* Add this letter to list of incorrect letters and remove a chance. */
     if (!matchFound) {
         this.incorrectLetters.push(letter);
+        this.chancesLeft--;
     }
     
     /* Check and see if the player has now guessed all the letters */
@@ -173,9 +172,7 @@ Guess.prototype.tryLetter = function(letter) {
     now finished.
 */
 Guess.prototype.checkForCompletion = function() {
-    if (this.revealedLetters == this.guessableLetters) {
-        this.complete = true;
-    }
+    this.complete = (this.revealedLetters == this.guessableLetters);
 };
 
 /*
@@ -183,15 +180,11 @@ Guess.prototype.checkForCompletion = function() {
     'tryLetter()' method which will handle the rest.
 */
 Guess.prototype.hint = function() {
+    if (this.completeOrOutOfChances()) return;
+    
     /* Player can't use hint if they haven't got any hints left. */
     if (this.hintsRemaining == 0) {
         console.error("No hints remaining.");
-        return;
-    }
-    
-    /* No point in using a hint if the word has already been guessed. */
-    if (this.complete) {
-        console.error("The word has already been guessed.");
         return;
     }
     
@@ -218,4 +211,19 @@ Guess.prototype.hint = function() {
     
     /* Pass this letter to tryLetter() */
     this.tryLetter(randomLetter);
+};
+
+/* Returns true if the word has been guessed or they are out of chances. */
+Guess.prototype.completeOrOutOfChances = function() {
+    if (this.complete) {
+        console.error("The word has been already been guessed.");
+        return true;
+    }
+    
+    if (!this.chancesLeft) {
+        console.error("Out of chances.");
+        return true;
+    }
+    
+    return false;
 };

@@ -40,6 +40,7 @@ UICallback.prototype.updateGuess = function(guess) {
         document.write(guess.correctLetters[i] + ", ");
     }
     document.write("</p>");
+    document.write("<p>Chances Left: " + guess.chancesLeft + "</p>");
     document.write("<p>Completed: " + guess.complete + "</p>");
     document.write("<hr />");
     document.write("<br />");
