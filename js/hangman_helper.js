@@ -33,3 +33,22 @@ HangmanHelper.isValidWord = function(word) {
     */
     return (generalPattern.test(word) && !(whitespacePattern.test(word)));
 };
+
+/*
+    Counts the number of letters in a word, excluding spaces to find out
+    how many letters can actually be guessed by the user.
+    
+    For example "A Welcome Entry" would return 13 even though the length is
+    15.
+*/
+HangmanHelper.getAmountOfGuessableLetters = function(word) {
+    let guessableLetters = 0;
+    
+    for (let i = 0; i < word.length; i++) {
+        if (HangmanHelper.isLetter(word[i])) {
+            guessableLetters++;
+        }
+    }
+    
+    return guessableLetters;
+};

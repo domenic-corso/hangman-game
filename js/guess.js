@@ -60,7 +60,7 @@ Guess.prototype.setWord = function(word, hints) {
     }
     
     /* Assign property values */
-    this.word = word.trim();
+    this.word = word.trim().toLowerCase();
     this.hintsRemaining = hints;
     
     /* Setup 'wordProgress' array. */
@@ -76,16 +76,7 @@ Guess.prototype.setWord = function(word, hints) {
         this.wordProgress[i] = letterState;
     }
     
-    /*
-        Find out how many letters in the word are guessable. This would
-        essentially just be (number of letters - number of spaces).
-    */
-    
-    for (let i = 0; i < this.word.length; i++) {
-        if (HangmanHelper.isLetter(this.word[i])) {
-            this.guessableLetters++;
-        }
-    }
+    this.guessableLetters = HangmanHelper.getAmountOfGuessableLetters(this.word);
     
     /*
         At the start, the amount of letters left to guess is equal to how
@@ -155,24 +146,13 @@ Guess.prototype.tryLetter = function(letter) {
         this.chancesLeft--;
     }
     
-    /* Check and see if the player has now guessed all the letters */
-    this.checkForCompletion();
+    /*
+        The word is complete if the amount of revealed letters is equal
+        to the amount of guessable letters.
+    */
+    this.complete = (this.revealedLetters == this.guessableLetters);
     
     this.uiCallback.updateGuess(this);
-};
-
-/*
-    This should be called at the end of 'tryLetter()', it checks if the player
-    has guessed all the letters in the word.
-    
-    A player has guessed all the letters if 'guessableLetters' is equal to 
-    'revealedLetters'.
-    
-    If a game mode is given, it should also be alerted that the guess is has
-    now finished.
-*/
-Guess.prototype.checkForCompletion = function() {
-    this.complete = (this.revealedLetters == this.guessableLetters);
 };
 
 /*
