@@ -4,6 +4,7 @@
 
 function SinglePlayerGame(uiCallback, category) {
     this.uiCallback = uiCallback;
+    
     this.category = category;
     this.wordList = category.words;
     
@@ -11,6 +12,7 @@ function SinglePlayerGame(uiCallback, category) {
     this.chosenWord = null;
 }
 
+/* This will be defined by Hangman.loadCategories() */
 SinglePlayerGame.categories = null;
 
 /*
