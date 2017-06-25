@@ -33,10 +33,45 @@ TwoPlayerGame.prototype.start = function() {
     /* Pick a player to guess first. */
     this.currentlyGuessing = [this.player1, this.player2][Math.floor(Math.random() * 2)];
     
+    this.uiCallback.updateTwoPlayer(this);
 };
 
-TwoPlayerGame.prototype.nextRound = function(word) {
+/*
+    Starts a new round by creating a new Guess object. This function will
+    accept a word that should have been provided by the player who is not
+    guessing next.
     
+    Note: the setWord() function of Guess will perform the validation.
+    
+    This function will return false if the given word is invalid, and true 
+    if everything went well.
+*/
+TwoPlayerGame.prototype.nextRound = function(word, hints) {
+    /* Create an empty Guess object */
+    this.guessObj = new Guess(this.uiCallback, this);
+    
+    /* Try to set the word and hints. */
+    if (!this.guessObj.setWord(word, hints)) {
+        return false;
+    }
+};
+
+/*
+    Callback function from the guessObj, tells us whether or not the 
+    word was successfully guessed.
+    
+    If the word was successfully guessed, add 1 to the points of the player
+    who is currently guessing.
+*/
+TwoPlayerGame.prototype.guessingFinished = function(success) {
+    if (success) {
+        this.currentlyGuessing.points++;
+    }
+    
+    /* It's the next players turn to guess. */
+    this.currentlyGuessing = this.guessingNext();
+    
+    this.uiCallback.updateTwoPlayer(this);
 };
 
 /* Returns the Player who is going to be guessing next (useful for the GUI). */

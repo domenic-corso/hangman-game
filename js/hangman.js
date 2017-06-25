@@ -11,6 +11,11 @@ function _test1() {
     myTP.start();
 }
 
+function _test2() {
+    mySP = new SinglePlayerGame(new UICallback(null), SinglePlayerGame.categories[0]);
+    mySP.start();
+}
+
 let Hangman = {};
 
 Hangman.start = function() {

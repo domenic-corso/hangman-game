@@ -152,6 +152,8 @@ Guess.prototype.tryLetter = function(letter) {
     */
     this.complete = (this.revealedLetters == this.guessableLetters);
     
+    this.assessCompletion();
+    
     this.uiCallback.updateGuess(this);
 };
 
@@ -206,4 +208,21 @@ Guess.prototype.completeOrOutOfChances = function() {
     }
     
     return false;
+};
+
+/*
+    If the player cannot guess anymore, this function will alert the game mode
+    whether or not they have completed the word or have failed.
+*/ 
+Guess.prototype.assessCompletion = function() {
+    if (this.complete) {
+        this.gameMode.guessingFinished(true);
+        return;
+    }
+    else {
+        if (!this.chancesLeft) {
+            this.gameMode.guessingFinished(false);
+            return;
+        }
+    }
 };

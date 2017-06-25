@@ -8,7 +8,7 @@ function UICallback(ui) {
 */
 UICallback.prototype.updateGuess = function(guess) {
     document.write("<hr />");
-    document.write("<h2>State Update</h2>");
+    document.write("<h2>Guess Update</h2>");
     document.write("<p>Word: " + guess.word + "</p>");
     document.write("<p>Guessable Letters: " + guess.guessableLetters + "</p>");
     document.write("<p>Hints Remaining: " + guess.hintsRemaining + "</p>");
@@ -44,4 +44,16 @@ UICallback.prototype.updateGuess = function(guess) {
     document.write("<p>Completed: " + guess.complete + "</p>");
     document.write("<hr />");
     document.write("<br />");
+};
+
+UICallback.prototype.updateTwoPlayer = function(twoPlayerGame) {
+    document.write("<hr />");
+    document.write("<h2>Two Player Update</h2>");
+    document.write("<p>Player 1: " + twoPlayerGame.player1.name + "</p>");
+    document.write("<p>Points: " + twoPlayerGame.player1.points + "</p>");
+    document.write("<p>Player 2: " + twoPlayerGame.player2.name + "</p>");
+    document.write("<p>Points: " + twoPlayerGame.player2.points + "</p>");
+    document.write("<p>Currently Guessing: " + twoPlayerGame.currentlyGuessing.name + "</p>");
+    document.write("<p>Guessing Next: " + twoPlayerGame.guessingNext().name + "</p>");
+    document.write("<hr />");
 };
