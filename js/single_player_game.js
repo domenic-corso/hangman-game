@@ -11,6 +11,8 @@ function SinglePlayerGame(uiCallback, category) {
     this.chosenWord = null;
 }
 
+SinglePlayerGame.categories = null;
+
 /*
     This function will calculate how many hints are given for a word
     based on its length. The minimum amount of letters in a word before
