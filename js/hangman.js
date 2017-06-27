@@ -33,7 +33,6 @@ Hangman.loadGUI = function() {
     console.log("Loading GUI...");
     
     /* Dev */
-    _test1();
 };
 
 window.onload = Hangman.start.bind(Hangman);

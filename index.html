@@ -2,6 +2,9 @@
 <html>
     <head>
         <title>Hangman</title>
+        <link href="css/main.css" rel="stylesheet" type="text/css" />
+        <link href="css/mp/menu.css" rel="stylesheet" type="text/css" />
+        <link href="css/mp/single_player_setup.css" rel="stylesheet" type="text/css" />
         <script src="js/ui_callback.js"></script>
         <script src="js/single_player_game.js"></script>
         <script src="js/two_player_game.js"></script>
@@ -12,6 +15,32 @@
         <script src="js/hangman.js"></script>
     </head>
     <body>
-        
+<!--
+
+Acronyms:
+
+cont =  Container
+mp =    Main Panel
+mpc =   Main Panel Component
+
+-->
+        <div id="game-cont">
+            <div id="top-bar">
+                <!-- Top Bar -->
+            </div>
+            <div id="mp-menu" class="main-panel">
+                <!-- Menu Panel -->
+                <h2 class="mpc-title">Main Menu</h2>
+                <div id="mpc-menu-buttons-cont">
+                    <button id="menu-btn-single-player" class="mpc-menu-button">Single Player</button>
+                    <button id="menu-btn-two-player" class="mpc-menu-button">Two Player</button>
+                    <button id="menu-btn-view-code" class="mpc-menu-button">View on Bitbucket</button>
+                </div>
+            </div>
+            <div id="mp-single-player-setup" class="main-panel">
+                <!-- Single Player Setup Panel -->
+                <h2 class="mpc-title">Single Player Setup</h2>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,0 +1,16 @@
+#mp-menu {
+    display: none;
+}
+
+#mpc-menu-buttons-cont {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.mpc-menu-button {
+    width: 100%;
+    display: block;
+    margin-bottom: 1vh;
+    padding: 1.2vh 0;
+    font-size: 2vmin;
+}
