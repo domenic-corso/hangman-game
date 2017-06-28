@@ -1,0 +1,44 @@
+#mp-gameplay {
+    display: none;
+}
+
+#mpc-gameplay-top-left-section {
+    width: 40%;
+    height: 80%;
+    float: left;
+}
+
+#mpc-gameplay-top-right-section {
+    width: 60%;
+    height: 80%;
+    float: left;
+    border-left: 1px solid #000;
+}
+
+#mpc-gameplay-bottom-section {
+    height: 20%;
+    clear: both;
+    border-top: 1px solid #000;
+}
+
+#mpc-gameplay-tpstats-cont {
+    height: 20%;
+}
+
+#mpc-gameplay-incorrect-letters-cont {
+    height: 80%;
+    border-top: 1px solid #000;
+}
+
+#mpc-gameplay-keyboard {
+    width: 85%;
+    height: 100%;
+    float: left;
+}
+
+#mpc-gameplay-hint-cont {
+    width: 15%;
+    height: 100%;
+    float: left;
+    border-left: 1px solid #000;
+}

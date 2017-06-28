@@ -5,6 +5,9 @@
         <link href="css/main.css" rel="stylesheet" type="text/css" />
         <link href="css/mp/menu.css" rel="stylesheet" type="text/css" />
         <link href="css/mp/single_player_setup.css" rel="stylesheet" type="text/css" />
+        <link href="css/mp/two_player_setup.css" rel="stylesheet" type="text/css" />
+        <link href="css/mp/enter_word.css" rel="stylesheet" type="text/css" />
+        <link href="css/mp/gameplay.css" rel="stylesheet" type="text/css" />
         <script src="js/ui_callback.js"></script>
         <script src="js/single_player_game.js"></script>
         <script src="js/two_player_game.js"></script>
@@ -39,7 +42,56 @@ mpc =   Main Panel Component
             </div>
             <div id="mp-single-player-setup" class="main-panel">
                 <!-- Single Player Setup Panel -->
-                <h2 class="mpc-title">Single Player Setup</h2>
+                <h2 class="mpc-title">Select a Category</h2>
+                <div id="mpc-category-buttons-cont">
+                    <button id="category-btn-food" class="mpc-menu-button">Food</button>
+                    <button id="category-btn-food" class="mpc-menu-button">Tech</button>
+                    <button id="category-btn-food" class="mpc-menu-button">Long Words</button>
+                </div>
+            </div>
+            <div id="mp-two-player-setup" class="main-panel">
+                <!-- Two Player Setup Panel -->
+                <h2 class="mpc-title">Two Player Setup</h2>
+                <div class="mpc-form-cont">
+                    <div id="player1-name-form-title" class="mpc-form-title">Player 1 Name</div>
+                    <input id="player-name-input" class="mpc-form-text-input" type="text" />
+                    <div id="player1-name-form-title" class="mpc-form-title">Player 2 Name</div>
+                    <input id="player-name-input" class="mpc-form-text-input" type="text" />
+                    <button id="two-player-start-btn" class="mpc-form-submit">Start</button>
+                </div>
+            </div>
+            <div id="mp-enter-word" class="main-panel">
+                <!-- Enter Word Panel -->
+                <div id="enter-word-player-name">Domenic,</div>
+                <h2 class="mpc-title">Enter a Word</h2>
+                <div class="mpc-form-cont">
+                    <input id="enter-word-input" class="mpc-form-text-input" type="password" />
+                    <div id="num-hints-form-title" class="mpc-form-title">Number of Hints:</div>
+                    <input id="num-hints-input" class="mpc-form-text-input" min="0" max="10" type="number" />
+                    <button id="two-player-start-btn" class="mpc-form-submit">Start Round</button>
+                </div>
+            </div>
+            <div id="mp-gameplay" class="main-panel">
+                <!-- Gameplay Panel -->
+                <div id="mpc-gameplay-top-left-section">
+                    <div id="mpc-gameplay-tpstats-cont">
+                    
+                    </div>
+                    <div id="mpc-gameplay-incorrect-letters-cont">
+                    
+                    </div>
+                </div>
+                <div id="mpc-gameplay-top-right-section">
+                    
+                </div>
+                <div id="mpc-gameplay-bottom-section">
+                    <div id="mpc-gameplay-keyboard">
+                    
+                    </div>
+                    <div id="mpc-gameplay-hint-cont">
+                    
+                    </div>
+                </div>
             </div>
         </div>
     </body>

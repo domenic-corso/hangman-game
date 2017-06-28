@@ -1,0 +1,32 @@
+#mp-two-player-setup {
+    display: none;
+}
+
+.mpc-form-cont {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.mpc-form-cont input {
+    margin-bottom: 1vh;
+}
+
+.mpc-form-title {
+    padding: 1vh 0;
+    font-size: 1.75vmin;
+    font-weight: bold;
+}
+
+.mpc-form-text-input {
+    width: 100%;
+    display: block;
+    padding: 1vh;
+    font-size: 2.25vmin;
+}
+
+.mpc-form-submit {
+    display: block;
+    margin: 2vh auto;
+    padding: 1.5vh;
+    font-size: 1.75vmin;
+}

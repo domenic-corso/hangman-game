@@ -7,6 +7,10 @@ body {
     margin: 10px 0 0 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 #game-cont {
     width: 1000px;
     height: 1000px;
@@ -25,7 +29,7 @@ body {
 }
 
 .mpc-title {
-    margin: 3vh 0;
+    margin: 4vh 0;
     text-align: center;
     font-size: 4vmin;
 }

@@ -1,3 +1,8 @@
 #mp-single-player-setup {
-    display: block;
+    display: none;
+}
+
+#mpc-category-buttons-cont {
+    margin: 0 auto;
+    width: 40%;
 }
