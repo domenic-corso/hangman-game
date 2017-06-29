@@ -16,9 +16,12 @@ function _test2() {
     mySP.start();
 }
 
-let Hangman = {};
+let Hangman = {
+    ui: DefaultUI
+};
 
 Hangman.start = function() {
+    this.ui.init();
     this.loadCategories();
 };
 
