@@ -67,7 +67,14 @@ mpc =   Main Panel Component
                 <!-- Gameplay Panel -->
                 <div id="mpc-gameplay-top-left-section">
                     <div id="mpc-gameplay-tpstats-cont">
-                    
+                        <div id="mpc-gameplay-p1-stats-cont">
+                            <div class="mpc-stats-player-name">Player 1</div>
+                            <div class="mpc-stats-points">3</div>
+                        </div>
+                        <div id="mpc-gameplay-p2-stats-cont">
+                            <div class="mpc-stats-player-name">Player 2</div>
+                            <div class="mpc-stats-points">2</div>
+                        </div>
                     </div>
                     <div id="mpc-gameplay-incorrect-letters-cont">
                         <div id="incorrect-letters-title">Incorrect Letters</div>
@@ -82,7 +89,24 @@ mpc =   Main Panel Component
                     </div>
                 </div>
                 <div id="mpc-gameplay-top-right-section">
+                    <div id="mpc-gameplay-word-progress">
+                        <div class="letter-progress-guessed">D</div>
+                        <div class="letter-progress-guessed">O</div>
+                        <div class="letter-progress-not-guessed">&nbsp;</div>
+                        <div class="letter-progress-not-guessed">&nbsp;</div>
+                        <div class="letter-progress-guessed">N</div>
+                        <div class="letter-progress-guessed">I</div>
+                        <div class="letter-progress-not-guessed">&nbsp;</div>
+                        <div class="letter-progress-space">&nbsp;</div>
+                        <div class="letter-progress-guessed">C</div>
+                        <div class="letter-progress-guessed">O</div>
+                        <div class="letter-progress-guessed">R</div>
+                        <div class="letter-progress-guessed">S</div>
+                        <div class="letter-progress-guessed">O</div>
+                    </div>
+                    <div id="mpc-gameplay-progress-visual">
                     
+                    </div>
                 </div>
                 <div id="mpc-gameplay-bottom-section">
                     <div id="mpc-gameplay-keyboard">
@@ -132,6 +156,7 @@ mpc =   Main Panel Component
         <script src="js/ui/enter_word_panel.js"></script>
         <script src="js/ui/gameplay_panel.js"></script>
         <script src="js/ui/default_ui.js"></script>
+        <script src="js/ui/default_ui_callback.js"></script>
         <script src="js/ui_callback.js"></script>
         <script src="js/single_player_game.js"></script>
         <script src="js/two_player_game.js"></script>

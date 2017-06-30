@@ -3,13 +3,13 @@
 }
 
 #mpc-gameplay-top-left-section {
-    width: 40%;
+    width: 30%;
     height: 86%;
     float: left;
 }
 
 #mpc-gameplay-top-right-section {
-    width: 60%;
+    width: 70%;
     height: 86%;
     float: left;
     border-left: 1px solid #000;
@@ -22,11 +22,10 @@
 }
 
 #mpc-gameplay-tpstats-cont {
-    height: 20%;
+    display: flex;
 }
 
 #mpc-gameplay-incorrect-letters-cont {
-    height: 80%;
     border-top: 1px solid #000;
 }
 
@@ -42,6 +41,28 @@
     padding: 1%;
     float: left;
     border-left: 1px solid #000;
+}
+
+/* Two Player Stats */
+#mpc-gameplay-p1-stats-cont, #mpc-gameplay-p2-stats-cont {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.mpc-stats-player-name {
+    width: 100%;
+    padding: 10%;
+    padding-bottom: 5%;
+    text-align: center;
+    font-size: 1.75vmin;
+    font-weight: bold;
+}
+
+.mpc-stats-points {
+    padding: 10%;
+    padding-top: 5%;
+    text-align: center;
+    font-size: 2.5vmin;
 }
 
 /* Incorrect Letters */
@@ -64,6 +85,40 @@
     padding: 2.5%;
     text-align: center;
     font-size: 2vmin;
+}
+
+/* Word Progress */
+#mpc-gameplay-word-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    padding: 1.5%;
+    border-bottom: 1px solid #000;
+}
+
+#mpc-gameplay-word-progress > div {
+    width: 8%;
+    margin-right: 1%;
+    font-size: 3.5vmin;
+    text-align: center;
+}
+
+.letter-progress-not-guessed {
+    border-bottom: 0.25vmin solid #000;
+}
+
+.letter-progress-space {
+    opacity: 0;
+}
+
+#mpc-gameplay-word-progress > div:last-of-type {
+    margin-right: 0;
+}
+
+/* Progress Visual */
+#mpc-gameplay-progress-visual {
+    height: 85%;
 }
 
 /* Keyboard */
