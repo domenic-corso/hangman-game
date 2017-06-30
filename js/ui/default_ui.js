@@ -3,8 +3,8 @@ let DefaultUI = {
         menu: MenuPanel,
         singlePlayerSetup: SinglePlayerSetupPanel,
         twoPlayerSetup: TwoPlayerSetupPanel,
-        enterWordPanel: EnterWordPanel,
-        gameplayPanel: GameplayPanel
+        enterWord: EnterWordPanel,
+        gameplay: GameplayPanel
     }
 };
 
@@ -15,6 +15,9 @@ DefaultUI.init = function() {
             this.panels[p].init();
         }
     }
+    
+    /* Show the menu panel at first. */
+    this.showPanel(this.panels.gameplay);
 };
 
 /*

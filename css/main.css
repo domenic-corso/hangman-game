@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     font-family: monospace;
+    user-select: none;
+    cursor: default;
 }
 
 body {
