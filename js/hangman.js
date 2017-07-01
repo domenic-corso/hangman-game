@@ -9,19 +9,29 @@ function _test1() {
     myTP.setPlayer1("Domenic");
     myTP.setPlayer2("Johnny");
     myTP.start();
+    
+    Hangman.activeGameMode = myTP;
 }
 
 function _test2() {
-    mySP = new SinglePlayerGame(new UICallback(null), SinglePlayerGame.categories[0]);
+    let callback = DefaultUICallback;
+    callback.setUI(DefaultUI);
+    
+    let category = SinglePlayerGame.categories[0];
+    
+    mySP = new SinglePlayerGame(callback, category);
     mySP.start();
+    
+    Hangman.activeGameMode = mySP;
 }
 
 let Hangman = {
-    ui: DefaultUI
+    ui: DefaultUI,
+    activeGameMode: null
 };
 
 Hangman.start = function() {
-    this.ui.init();
+    this.ui.init(this);
     this.loadCategories();
 };
 
@@ -34,6 +44,7 @@ Hangman.loadCategories = function() {
 
 Hangman.loadGUI = function() {
     console.log("Loading GUI...");
+    _test2();
     
     /* Dev */
 };

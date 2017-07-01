@@ -1,18 +1,22 @@
 let DefaultUI = {
+    hangmanGame: null,
     panels: {
         menu: MenuPanel,
         singlePlayerSetup: SinglePlayerSetupPanel,
         twoPlayerSetup: TwoPlayerSetupPanel,
         enterWord: EnterWordPanel,
         gameplay: GameplayPanel
-    }
+    },
+    activePanel: null
 };
 
-DefaultUI.init = function() {
+DefaultUI.init = function(hangmanGame) {
+    this.hangmanGame = hangmanGame;
+    
     /* Initialize all the panels. */
     for (p in this.panels) {
         if (this.panels.hasOwnProperty(p)) {
-            this.panels[p].init();
+            this.panels[p].init(this.hangmanGame);
         }
     }
     
@@ -31,6 +35,11 @@ DefaultUI.showPanel = function(panel) {
         return;
     }
     
+    /* Don't do anything if this panel is already displayed. */
+    if (this.activePanel === panel) {
+        return;
+    }
+    
     /* Hide all other panels. */
     let panelElements = document.querySelectorAll(".main-panel");
     for (let i = 0; i < panelElements.length; i++) {
@@ -39,6 +48,11 @@ DefaultUI.showPanel = function(panel) {
     
     /* Show target panel */
     panel.e.panel.style.display = "block";
+    
+    /* Tell the panel it is now active */
+    panel.onShow();
+    
+    this.activePanel = panel;
 };
 
 /*
