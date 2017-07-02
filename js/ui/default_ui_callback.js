@@ -20,4 +20,11 @@ DefaultUICallback.updateGuess = function(guessObj) {
     
     /* Show gameplay panel in single or two player mode. */
     gameplayPanel.singlePlayerMode(guessObj.gameMode instanceof SinglePlayerGame);
+    
+    /* Show the amount of hints remaining and deactivate/active button. */
+    gameplayPanel.updateHints(guessObj.hintsRemaining);
+    
+    gameplayPanel.setOverallState(guessObj.getOverallState());
+    
+    gameplayPanel.nextRoundButtonEnabled(guessObj.gameMode.roundFinished);
 };

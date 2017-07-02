@@ -31,6 +31,13 @@ Guess.LetterStates = {
     SPACE: 3
 };
 
+
+Guess.OverallState = {
+    IN_PROGRESS: 1,
+    FAIL: 2,
+    COMPLETE: 3
+};
+
 /*
     See Guess.MIN_LEFT_TO_HINT for description.
 */
@@ -225,4 +232,16 @@ Guess.prototype.assessCompletion = function() {
             return;
         }
     }
+};
+
+Guess.prototype.getOverallState = function() {
+    if (this.complete) {
+        return Guess.OverallState.COMPLETE;
+    }
+    
+    if (!this.chancesLeft && !this.complete) {
+        return Guess.OverallState.FAIL;
+    }
+    
+    return Guess.OverallState.IN_PROGRESS;
 };

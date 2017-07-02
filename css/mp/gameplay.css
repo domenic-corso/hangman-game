@@ -116,9 +116,40 @@
     margin-right: 0;
 }
 
+/* Word Progress - States */
+#mpc-gameplay-word-progress.in_progress > div {
+    color: #000;
+    border-bottom-color: #00F;
+}
+
+#mpc-gameplay-word-progress.fail > div {
+    color: #F00;
+    border-bottom-color: #F00;
+}
+
+#mpc-gameplay-word-progress.complete > div {
+    color: #0F0;
+    border-bottom-color: #0F0;
+}
+
 /* Progress Visual */
 #mpc-gameplay-progress-visual {
-    height: 85%;
+    height: 75%;
+}
+
+/* Next Round */
+
+#mpc-gameplay-next-round-container {
+    padding: 2%;
+    height: 10%;
+    text-align: right;
+}
+
+#next-round-btn {
+    padding: 0 5%;
+    height: 100%;
+    font-size: 1.5vmin;
+    display: none;
 }
 
 /* Keyboard */
@@ -150,6 +181,10 @@
 #hint-btn {
     width: 100%;
     height: 100%;
+}
+
+#hint-btn * {
+    cursor: pointer;
 }
 
 #hint-btn span {

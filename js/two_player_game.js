@@ -7,8 +7,10 @@ function TwoPlayerGame(uiCallback) {
     
     this.player1 = null;
     this.player2 = null;
+    
     this.currentlyGuessing = null;
     this.guessObj = null;
+    this.roundFinished = false;
 }
 
 TwoPlayerGame.prototype.setPlayer1 = function(name) {
@@ -30,6 +32,8 @@ TwoPlayerGame.prototype.start = function() {
         return;
     }
     
+    this.roundFinished = false;
+    
     /* Pick a player to guess first. */
     this.currentlyGuessing = [this.player1, this.player2][Math.floor(Math.random() * 2)];
     
@@ -47,6 +51,8 @@ TwoPlayerGame.prototype.start = function() {
     if everything went well.
 */
 TwoPlayerGame.prototype.nextRound = function(word, hints) {
+    this.roundFinished = false;
+    
     /* Create an empty Guess object */
     this.guessObj = new Guess(this.uiCallback, this);
     
@@ -64,6 +70,8 @@ TwoPlayerGame.prototype.nextRound = function(word, hints) {
     who is currently guessing.
 */
 TwoPlayerGame.prototype.guessingFinished = function(success) {
+    this.roundFinished = true;
+    
     if (success) {
         this.currentlyGuessing.points++;
     }

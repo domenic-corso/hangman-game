@@ -5,12 +5,18 @@ let GameplayPanel = {
         wordProgress: document.getElementById("mpc-gameplay-word-progress"),
         incorrectLettersList: document.getElementById("incorrect-letters-list"),
         twoPlayerStats: document.getElementById("mpc-gameplay-tpstats-cont"),
-        keys: document.querySelectorAll(".mpc-keyboard-key")
+        nextRoundButton: document.getElementById("next-round-btn"),
+        keys: document.querySelectorAll(".mpc-keyboard-key"),
+        hintButton: document.getElementById("hint-btn"),
+        hintsRemainingText: document.getElementById("num-hints-remaining")
     },
     evtCallbacks: {
         keyPressed: function(e) {
             let letter = e.target.innerHTML.trim();
             this.hangmanGame.activeGameMode.guessObj.tryLetter(letter);
+        },
+        hintPressed: function(e) {
+            this.hangmanGame.activeGameMode.guessObj.hint();
         }
     }
 };
@@ -29,6 +35,9 @@ GameplayPanel.addEventListeners = function() {
     for (let i = 0; i < this.e.keys.length; i++) {
         this.e.keys[i].addEventListener("click", this.evtCallbacks.keyPressed.bind(this));
     }
+    
+    /* For the hint button. */
+    this.e.hintButton.addEventListener("click", this.evtCallbacks.hintPressed.bind(this));
 };
 
 /*
@@ -80,6 +89,10 @@ GameplayPanel.updateWordProgress = function(word, states) {
     }
 };
 
+/*
+    Adds the letters that were incorrectly guessed on the side of the 
+    panel.
+*/
 GameplayPanel.updateIncorrectLetters = function(incorrectLetters) {
     JSAK.removeAllChildren(this.e.incorrectLettersList);
     
@@ -99,11 +112,62 @@ GameplayPanel.updateIncorrectLetters = function(incorrectLetters) {
     }
 };
 
+/*
+    Shows/Hides the two-player scoreboard depending on the mode.
+*/
 GameplayPanel.singlePlayerMode = function(b) {
     if (b) {
         this.e.twoPlayerStats.style.display = "none";
     }
     else {
         this.e.twoPlayerStats.style.display = "flex";
+    }
+};
+
+/*
+    Updates the amount of hints remaining and deactivates the button if the
+    player has none left.
+*/
+GameplayPanel.updateHints = function(hintsRemaining) {
+    this.e.hintsRemainingText.innerHTML = hintsRemaining;
+    
+    /* Disable button if no hints remaining. */
+    if (hintsRemaining == 0) {
+        this.e.hintButton.disabled = true;
+    } else {
+        this.e.hintButton.disabled = false;
+    }
+};
+
+/*
+    Changes the colour/appearence of the letter progress based on the overall
+    state of the guess. Generally, green == success, red == failure and white
+    == in progress. See Guess.OverallStates;
+*/
+GameplayPanel.setOverallState = function(overallState) {
+    let className = "in_progress";
+    switch (overallState) {
+        case Guess.OverallState.IN_PROGRESS:
+            className = "in_progress";
+            break;
+        case Guess.OverallState.FAIL:
+            className = "fail";
+            break;
+        case Guess.OverallState.COMPLETE:
+            className = "complete";
+            break;
+    }
+    
+    this.e.wordProgress.className = className;
+};
+
+GameplayPanel.nextRoundButtonEnabled = function(b) {
+    if (b) {
+        this.e.nextRoundButton.disabled = false;
+        this.e.nextRoundButton.style.display = "inline-block";
+    } else {
+        this.e.nextRoundButton.disabled = true;
+        this.e.nextRoundButton.style.display = "none";
+        
     }
 };

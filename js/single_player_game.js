@@ -10,6 +10,7 @@ function SinglePlayerGame(uiCallback, category) {
     
     this.guessObj = null;
     this.chosenWord = null;
+    this.roundFinished = false;
 }
 
 /* This will be defined by Hangman.loadCategories() */
@@ -34,6 +35,8 @@ SinglePlayerGame.calculateNumHints = function(word) {
        how many hints should be given.
 */
 SinglePlayerGame.prototype.start = function() {
+    this.roundFinished = false;
+    
     /* Pick a random word from the list */
     let randomIndex = Math.floor(Math.random() * this.wordList.length);
     this.chosenWord = this.wordList[randomIndex];
@@ -46,9 +49,15 @@ SinglePlayerGame.prototype.start = function() {
     this.guessObj.setWord(this.chosenWord, hints);
 };
 
+SinglePlayerGame.prototype.nextRound = function() {
+     
+};
+
 /*
     Callback function from the guessObj, tells us whether or not the 
     word was successfully guessed. At this point in Single Player Mode,
     this means nothing.
 */
-SinglePlayerGame.prototype.guessingFinished = function(success) {};
+SinglePlayerGame.prototype.guessingFinished = function(success) {
+    this.roundFinished = true;
+};
