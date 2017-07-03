@@ -17,6 +17,17 @@ let GameplayPanel = {
         },
         hintPressed: function(e) {
             this.hangmanGame.activeGameMode.guessObj.hint();
+        },
+        nextRoundPressed: function(e) {
+            /*
+                If a single player game is being played, start the next round
+                as it does not require any paramaters. A two player game 
+                however should switch to the word insertion panel which will
+                then do the job of calling nextRound()
+            */
+            if (this.hangmanGame.activeGameMode instanceof SinglePlayerGame) {
+                this.hangmanGame.activeGameMode.nextRound();
+            }
         }
     }
 };
@@ -38,6 +49,9 @@ GameplayPanel.addEventListeners = function() {
     
     /* For the hint button. */
     this.e.hintButton.addEventListener("click", this.evtCallbacks.hintPressed.bind(this));
+    
+    /* For the next round button. */
+    this.e.nextRoundButton.addEventListener("click", this.evtCallbacks.nextRoundPressed.bind(this));
 };
 
 /*
@@ -124,6 +138,10 @@ GameplayPanel.singlePlayerMode = function(b) {
     }
 };
 
+GameplayPanel.hintButtonEnabled = function(b) {
+    this.e.hintButton.disabled = !b;
+}
+
 /*
     Updates the amount of hints remaining and deactivates the button if the
     player has none left.
@@ -132,10 +150,12 @@ GameplayPanel.updateHints = function(hintsRemaining) {
     this.e.hintsRemainingText.innerHTML = hintsRemaining;
     
     /* Disable button if no hints remaining. */
-    if (hintsRemaining == 0) {
-        this.e.hintButton.disabled = true;
-    } else {
-        this.e.hintButton.disabled = false;
+    if (!this.e.hintButton.disabled) {
+        if (hintsRemaining == 0) {
+            this.e.hintButton.disabled = true;
+        } else {
+            this.e.hintButton.disabled = false;
+        }
     }
 };
 

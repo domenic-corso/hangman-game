@@ -180,6 +180,7 @@ Guess.prototype.hint = function() {
     /* Refer to tooLateToUseHint() */
     if (this.tooLateToUseHint()) {
         console.error("It is too late to use a hint.");
+        return;
     }
     
     let randomIndex, randomLetter;

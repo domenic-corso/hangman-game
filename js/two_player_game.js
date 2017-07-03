@@ -14,10 +14,20 @@ function TwoPlayerGame(uiCallback) {
 }
 
 TwoPlayerGame.prototype.setPlayer1 = function(name) {
+    if (!HangmanHelper.isValidName(name)) {
+        console.error("Name invalid.");
+        return;
+    }
+    
     this.player1 = new Player(name);
 };
 
 TwoPlayerGame.prototype.setPlayer2 = function(name) {
+    if (!HangmanHelper.isValidName(name)) {
+        console.error("Name invalid.");
+        return;
+    }
+    
     this.player2 = new Player(name);
 };
 
@@ -36,8 +46,6 @@ TwoPlayerGame.prototype.start = function() {
     
     /* Pick a player to guess first. */
     this.currentlyGuessing = [this.player1, this.player2][Math.floor(Math.random() * 2)];
-    
-    this.uiCallback.updateTwoPlayer(this);
 };
 
 /*

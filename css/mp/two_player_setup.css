@@ -22,6 +22,7 @@
     display: block;
     padding: 1vh;
     font-size: 2.25vmin;
+    cursor: text;
 }
 
 .mpc-form-submit {

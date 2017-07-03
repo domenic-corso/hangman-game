@@ -52,3 +52,10 @@ HangmanHelper.getAmountOfGuessableLetters = function(word) {
     
     return guessableLetters;
 };
+
+HangmanHelper.isValidName = function(name) {
+    let pattern = /^([a-z ]){3,12}$/i;
+    let whitespacePattern = /^\s+$/;
+
+    return (pattern.test(name.trim()) && !(whitespacePattern.test(name)));
+};

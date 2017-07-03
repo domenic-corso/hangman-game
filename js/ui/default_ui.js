@@ -16,12 +16,12 @@ DefaultUI.init = function(hangmanGame) {
     /* Initialize all the panels. */
     for (p in this.panels) {
         if (this.panels.hasOwnProperty(p)) {
-            this.panels[p].init(this.hangmanGame);
+            this.panels[p].init(this.hangmanGame, this);
         }
     }
     
     /* Show the menu panel at first. */
-    this.showPanel(this.panels.gameplay);
+    this.showPanel(this.panels.twoPlayerSetup);
 };
 
 /*

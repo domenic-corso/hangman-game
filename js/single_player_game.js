@@ -50,7 +50,7 @@ SinglePlayerGame.prototype.start = function() {
 };
 
 SinglePlayerGame.prototype.nextRound = function() {
-     
+     this.start();
 };
 
 /*

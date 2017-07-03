@@ -6,7 +6,7 @@
 /* Dev */
 function _test1() {
     myTP = new TwoPlayerGame(new UICallback(null));
-    myTP.setPlayer1("Domenic");
+    myTP.setPlayer1("%Domenic");
     myTP.setPlayer2("Johnny");
     myTP.start();
     
@@ -27,6 +27,7 @@ function _test2() {
 
 let Hangman = {
     ui: DefaultUI,
+    uiCallback: DefaultUICallback,
     activeGameMode: null
 };
 
@@ -43,9 +44,6 @@ Hangman.loadCategories = function() {
 };
 
 Hangman.loadGUI = function() {
-    console.log("Loading GUI...");
-    _test2();
-    
     /* Dev */
 };
 
