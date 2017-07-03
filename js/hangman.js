@@ -32,8 +32,6 @@ let Hangman = {
 };
 
 Hangman.start = function() {
-    this.ui.init(this);
-    this.uiCallback.setUI(this.ui);
     this.loadCategories();
 };
 
@@ -45,7 +43,8 @@ Hangman.loadCategories = function() {
 };
 
 Hangman.loadGUI = function() {
-    /* Dev */
+    this.ui.init(this);
+    this.uiCallback.setUI(this.ui);
 };
 
 window.onload = Hangman.start.bind(Hangman);
