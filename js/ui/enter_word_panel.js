@@ -5,7 +5,8 @@ let EnterWordPanel = {
         panel: document.getElementById("mp-enter-word"),
         wordInput: document.getElementById("enter-word-input"),
         numHintsInput: document.getElementById("num-hints-input"),
-        nextRoundButton: document.getElementById("two-player-next-round-btn")
+        nextRoundButton: document.getElementById("two-player-next-round-btn"),
+        playerName: document.getElementById("enter-word-player-name")
     },
     evtCallbacks: {
         /*
@@ -65,6 +66,10 @@ EnterWordPanel.onShow = function() {
     this.e.wordInput.value = null;
     this.e.numHintsInput.value = null;
     this.clearRecommendedHints();
+    
+    /* Show who is currently selecting a word. */
+    this.e.playerName.innerHTML = this.hangmanGame.activeGameMode.guessingNext().name + ",";
+    
 };
 
 EnterWordPanel.addEventListeners = function() {

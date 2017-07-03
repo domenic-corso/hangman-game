@@ -18,4 +18,11 @@ DefaultUICallback.updateGuess = function(guessObj) {
     gameplayPanel.updateHints(guessObj.hintsRemaining);
     gameplayPanel.setOverallState(guessObj.getOverallState());
     gameplayPanel.nextRoundButtonEnabled(guessObj.gameMode.roundFinished);
+    
+    if (guessObj.gameMode instanceof TwoPlayerGame) {
+        gameplayPanel.setPlayer1Name(guessObj.gameMode.player1.name);
+        gameplayPanel.setPlayer1Points(guessObj.gameMode.player1.points);
+        gameplayPanel.setPlayer2Name(guessObj.gameMode.player2.name);
+        gameplayPanel.setPlayer2Points(guessObj.gameMode.player2.points);
+    }
 };

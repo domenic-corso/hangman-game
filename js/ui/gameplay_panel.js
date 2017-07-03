@@ -6,6 +6,10 @@ let GameplayPanel = {
         wordProgress: document.getElementById("mpc-gameplay-word-progress"),
         incorrectLettersList: document.getElementById("incorrect-letters-list"),
         twoPlayerStats: document.getElementById("mpc-gameplay-tpstats-cont"),
+        player1Name: document.getElementById("player1-name"),
+        player2Name: document.getElementById("player2-name"),
+        player1Points: document.getElementById("player1-points"),
+        player2Points: document.getElementById("player2-points"),
         nextRoundButton: document.getElementById("next-round-btn"),
         keys: document.querySelectorAll(".mpc-keyboard-key"),
         hintButton: document.getElementById("hint-btn"),
@@ -195,4 +199,20 @@ GameplayPanel.nextRoundButtonEnabled = function(b) {
         this.e.nextRoundButton.style.display = "none";
         
     }
+};
+
+GameplayPanel.setPlayer1Name = function(name) {
+    this.e.player1Name.innerHTML = name;
+};
+
+GameplayPanel.setPlayer2Name = function(name) {
+    this.e.player2Name.innerHTML = name;
+};
+
+GameplayPanel.setPlayer1Points = function(points) {
+    this.e.player1Points.innerHTML = points;
+};
+
+GameplayPanel.setPlayer2Points = function(points) {
+    this.e.player2Points.innerHTML = points;
 };

@@ -23,6 +23,7 @@
 
 #mpc-gameplay-tpstats-cont {
     display: flex;
+    height: 15%;
 }
 
 #mpc-gameplay-incorrect-letters-cont {
@@ -45,8 +46,9 @@
 
 /* Two Player Stats */
 #mpc-gameplay-p1-stats-cont, #mpc-gameplay-p2-stats-cont {
-    flex-grow: 1;
+    width: 50%;
     height: 100%;
+    float: left;
 }
 
 .mpc-stats-player-name {

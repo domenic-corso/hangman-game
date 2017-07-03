@@ -37,6 +37,8 @@ let TwoPlayerSetupPanel = {
                 tpGame.setPlayer2(p2Name);
                 
                 this.hangmanGame.activeGameMode = tpGame;
+                this.hangmanGame.activeGameMode.start();
+                
                 this.parentUI.showPanel(this.parentUI.panels.enterWord);
             }
         }

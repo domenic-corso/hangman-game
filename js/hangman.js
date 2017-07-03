@@ -46,10 +46,6 @@ Hangman.loadCategories = function() {
 
 Hangman.loadGUI = function() {
     /* Dev */
-    this.activeGameMode = new TwoPlayerGame(this.uiCallback);
-    this.activeGameMode.setPlayer1("Domenic");
-    this.activeGameMode.setPlayer2("Mary");
-    this.activeGameMode.start();
 };
 
 window.onload = Hangman.start.bind(Hangman);
