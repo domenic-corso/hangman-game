@@ -14,20 +14,20 @@ let TwoPlayerSetupPanel = {
             
             /* Assume all is valid */
             let bothValid = true;
-            this.inputFieldValid(p1NameField);
-            this.inputFieldValid(p2NameField);
+            this.parentUI.inputFieldValid(p1NameField);
+            this.parentUI.inputFieldValid(p2NameField);
             
             let p1Name = p1NameField.value.trim();
             let p2Name = p2NameField.value.trim();
             
             if (!HangmanHelper.isValidName(p1Name)) {
                 bothValid = false;
-                this.inputFieldError(p1NameField);
+                this.parentUI.inputFieldError(p1NameField);
             }
             
             if (!HangmanHelper.isValidName(p2Name)) {
                 bothValid = false;
-                this.inputFieldError(p2NameField);
+                this.parentUI.inputFieldError(p2NameField);
             }
             
             if (bothValid) {
@@ -60,14 +60,4 @@ TwoPlayerSetupPanel.addEventListeners = function() {
 TwoPlayerSetupPanel.areNamesValid = function() {
     let p1Name = this.e.p1NameInput.value.trim();
     let p2Name = this.e.p2NameInput.value.trim();
-};
-
-TwoPlayerSetupPanel.inputFieldError = function(inputField) {
-    inputField.style.color = "#F00";
-    inputField.style.borderColor = "#F00";
-};
-
-TwoPlayerSetupPanel.inputFieldValid = function(inputField) {
-    inputField.style.removeProperty("color");
-    inputField.style.removeProperty("border-color");
 };

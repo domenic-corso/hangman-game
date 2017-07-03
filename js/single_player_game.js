@@ -24,8 +24,14 @@ SinglePlayerGame.categories = [];
     This will not take spaces into account, for safety.
 */
 SinglePlayerGame.calculateNumHints = function(word) {
+    let calculatedHints = 0;
+    
     guessableLetters = HangmanHelper.getAmountOfGuessableLetters(word);
-    return Math.floor(guessableLetters / 5);
+    calculatedHints = Math.floor(guessableLetters / 5);
+    
+    if (calculatedHints > Guess.MAX_HINTS) {
+        return Guess.MAX_HINTS;
+    } return calculatedHints;
 };
 
 /*

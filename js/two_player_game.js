@@ -86,8 +86,6 @@ TwoPlayerGame.prototype.guessingFinished = function(success) {
     
     /* It's the next players turn to guess. */
     this.currentlyGuessing = this.guessingNext();
-    
-    this.uiCallback.updateTwoPlayer(this);
 };
 
 /* Returns the Player who is going to be guessing next (useful for the GUI). */

@@ -1,5 +1,6 @@
 let GameplayPanel = {
     hangmanGame: null,
+    parentUI: null,
     e: {
         panel: document.getElementById("mp-gameplay"),
         wordProgress: document.getElementById("mpc-gameplay-word-progress"),
@@ -28,12 +29,16 @@ let GameplayPanel = {
             if (this.hangmanGame.activeGameMode instanceof SinglePlayerGame) {
                 this.hangmanGame.activeGameMode.nextRound();
             }
+            else {
+                this.parentUI.showPanel(this.parentUI.panels.enterWord);
+            }
         }
     }
 };
 
-GameplayPanel.init = function(hangmanGame) {
+GameplayPanel.init = function(hangmanGame, parentUI) {
     this.hangmanGame = hangmanGame;
+    this.parentUI = parentUI;
     this.addEventListeners();
 };
 

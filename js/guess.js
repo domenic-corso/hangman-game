@@ -20,6 +20,8 @@ function Guess(uiCallback, gameMode) {
 /* You need to have >= MIN_LEFT_TO_HINT letters left to guess to hint() */
 Guess.MIN_LEFT_TO_HINT = 2;
 
+Guess.MAX_HINTS = 9;
+
 /*
     A letter can either be not guessed, guessed or be a space character. This
     enum-style object combined with the 'wordProgress' is useful for the UI to 
