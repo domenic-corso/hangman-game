@@ -36,7 +36,7 @@ DefaultUI.init = function(hangmanGame) {
     this.addEventListeners();
     
     /* Show the menu panel at first. */
-    this.showPanel(this.panels.menu);
+    this.showPanel(this.panels.twoPlayerSetup);
 };
 
 DefaultUI.addEventListeners = function() {
@@ -91,11 +91,9 @@ DefaultUI.panelExists = function(panel) {
 };
 
 DefaultUI.inputFieldError = function(inputField) {
-    inputField.style.color = "#F00";
-    inputField.style.borderColor = "#F00";
+    inputField.style.boxShadow = "0 0 1vmin #F00";
 };
 
 DefaultUI.inputFieldValid = function(inputField) {
-    inputField.style.removeProperty("color");
-    inputField.style.removeProperty("border-color");
+    inputField.style.removeProperty("box-shadow");
 };

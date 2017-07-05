@@ -33,9 +33,9 @@ mpc =   Main Panel Component
                 <!-- Menu Panel -->
                 <h2 class="mpc-title">Main Menu</h2>
                 <div id="mpc-menu-buttons-cont">
-                    <button id="menu-btn-single-player" class="mpc-menu-button">Single Player</button>
-                    <button id="menu-btn-two-player" class="mpc-menu-button">Two Player</button>
-                    <button id="menu-btn-view-code" class="mpc-menu-button">View on Bitbucket</button>
+                    <button id="menu-btn-single-player" class="mpc-menu-button">SINGLE PLAYER</button>
+                    <button id="menu-btn-two-player" class="mpc-menu-button">TWO PLAYER</button>
+                    <button id="menu-btn-view-code" class="mpc-menu-button">VIEW ON BITBUCKET</button>
                 </div>
             </div>
             <div id="mp-single-player-setup" class="main-panel">
@@ -52,9 +52,9 @@ mpc =   Main Panel Component
                 <h2 class="mpc-title">Two Player Setup</h2>
                 <div class="mpc-form-cont">
                     <div id="player1-name-form-title" class="mpc-form-title">Player 1 Name</div>
-                    <input id="player1-name-input" class="mpc-form-text-input" type="text" />
+                    <input id="player1-name-input" class="mpc-form-text-input" type="text" spellcheck="false" />
                     <div id="player1-name-form-title" class="mpc-form-title">Player 2 Name</div>
-                    <input id="player2-name-input" class="mpc-form-text-input" type="text" />
+                    <input id="player2-name-input" class="mpc-form-text-input" type="text" spellcheck="false" />
                     <button id="two-player-start-btn" class="mpc-form-submit">Start</button>
                 </div>
             </div>
@@ -63,9 +63,9 @@ mpc =   Main Panel Component
                 <div id="enter-word-player-name"></div>
                 <h2 class="mpc-title">Enter a Word</h2>
                 <div class="mpc-form-cont">
-                    <input id="enter-word-input" class="mpc-form-text-input" type="password" />
+                    <input id="enter-word-input" class="mpc-form-text-input" type="password" spellcheck="false" />
                     <div id="num-hints-form-title" class="mpc-form-title">Number of Hints (Max 9):</div>
-                    <input id="num-hints-input" class="mpc-form-text-input" min="0" max="9" type="number" />
+                    <input id="num-hints-input" class="mpc-form-text-input" min="0" max="9" type="number" spellcheck="false" />
                     <button id="two-player-next-round-btn" class="mpc-form-submit">Play Round</button>
                 </div>
             </div>
@@ -74,12 +74,12 @@ mpc =   Main Panel Component
                 <div id="mpc-gameplay-top-left-section">
                     <div id="mpc-gameplay-tpstats-cont">
                         <div id="mpc-gameplay-p1-stats-cont">
-                            <div id="player1-name" class="mpc-stats-player-name"></div>
-                            <div id="player1-points" class="mpc-stats-points"></div>
+                            <div id="player1-name" class="mpc-stats-player-name">Player 1</div>
+                            <div id="player1-points" class="mpc-stats-points">3</div>
                         </div>
                         <div id="mpc-gameplay-p2-stats-cont">
-                            <div id="player2-name" class="mpc-stats-player-name"></div>
-                            <div id="player2-points" class="mpc-stats-points"></div>
+                            <div id="player2-name" class="mpc-stats-player-name">Player 2</div>
+                            <div id="player2-points" class="mpc-stats-points">5</div>
                         </div>
                     </div>
                     <div id="mpc-gameplay-incorrect-letters-cont">

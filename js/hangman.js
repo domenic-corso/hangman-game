@@ -3,6 +3,12 @@
     loading.
 */
 
+function _dev1() {
+    sp1 = new SinglePlayerGame(Hangman.uiCallback, SinglePlayerGame.categories[0]);
+    Hangman.activeGameMode = sp1;
+    sp1.start();
+}
+
 let Hangman = {
     ui: DefaultUI,
     uiCallback: DefaultUICallback,

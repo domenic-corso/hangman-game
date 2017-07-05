@@ -3,32 +3,29 @@
 }
 
 #mpc-gameplay-top-left-section {
-    width: 30%;
+    width: 28%;
     height: 86%;
     float: left;
 }
 
 #mpc-gameplay-top-right-section {
-    width: 70%;
+    width: 72%;
     height: 86%;
     float: left;
-    border-left: 1px solid #000;
+    border-left: 0.25vmin solid #DDD;
 }
 
 #mpc-gameplay-bottom-section {
     height: 14%;
     clear: both;
-    border-top: 1px solid #000;
+    border-top: 0.25vmin solid #DDD;
 }
 
 #mpc-gameplay-tpstats-cont {
     display: flex;
-    height: 15%;
 }
 
-#mpc-gameplay-incorrect-letters-cont {
-    border-top: 1px solid #000;
-}
+#mpc-gameplay-incorrect-letters-cont {}
 
 #mpc-gameplay-keyboard {
     width: 85%;
@@ -41,7 +38,6 @@
     height: 100%;
     padding: 1%;
     float: left;
-    border-left: 1px solid #000;
 }
 
 /* Top Bar */
@@ -70,29 +66,32 @@
     width: 50%;
     height: 100%;
     float: left;
+    border-bottom: 0.25vmin solid #DDD;
 }
 
 .mpc-stats-player-name {
     width: 100%;
     padding: 10%;
-    padding-bottom: 5%;
     text-align: center;
-    font-size: 1.75vmin;
-    font-weight: bold;
+    color: #A65050;
+    font-size: 1.5vmin;
+    font-family: 'Display Bold', sans-serif;
+    text-transform: uppercase;
 }
 
 .mpc-stats-points {
     padding: 10%;
-    padding-top: 5%;
+    padding-top: 0;
     text-align: center;
-    font-size: 2.5vmin;
+    font-size: 3vmin;
 }
 
 /* Incorrect Letters */
 #incorrect-letters-title {
-    padding: 5%;
+    padding: 7.5%;
     text-align: center;
-    font-weight: bold;
+    font-family: 'Display Bold', sans-serif;
+    color: #A65050;
     font-size: 2vmin;
 }
 
@@ -108,6 +107,7 @@
     padding: 2.5%;
     text-align: center;
     font-size: 2vmin;
+    font-family: 'Display Bold', sans-serif;
 }
 
 /* Word Progress */
@@ -117,18 +117,18 @@
     align-items: center;
     height: 15%;
     padding: 1.5%;
-    border-bottom: 1px solid #000;
 }
 
 #mpc-gameplay-word-progress > div {
-    width: 8%;
+    width: 7%;
     margin-right: 1%;
-    font-size: 3.5vmin;
+    font-size: 3vmin;
+    font-family: 'Display Bold', sans-serif;
     text-align: center;
 }
 
 .letter-progress-not-guessed {
-    border-bottom: 0.25vmin solid #000;
+    border-bottom: 0.15vmin solid #000;
 }
 
 .letter-progress-space {
@@ -142,17 +142,17 @@
 /* Word Progress - States */
 #mpc-gameplay-word-progress.in_progress > div {
     color: #000;
-    border-bottom-color: #00F;
+    border-bottom-color: #AAA;
 }
 
 #mpc-gameplay-word-progress.fail > div {
-    color: #F00;
-    border-bottom-color: #F00;
+    color: #D14141;
+    text-shadow: 0 0 1.5vmin #F00;
 }
 
 #mpc-gameplay-word-progress.complete > div {
-    color: #0F0;
-    border-bottom-color: #0F0;
+    color: #2A8C3C;
+    text-shadow: 0 0 1.5vmin #0F0;
 }
 
 /* Progress Visual */
@@ -193,7 +193,9 @@
 .mpc-keyboard-key {
     flex-grow: 1;
     margin-right: 1%;
+    font-family: 'Monospace', monospace;
     font-size: 2vmin;
+    border-radius: 1vmin;
 }
 
 .mpc-keyboard-key:last-of-type {
@@ -204,10 +206,17 @@
 #hint-btn {
     width: 100%;
     height: 100%;
+    background-color: #DEB968;
+}
+
+#hint-btn:hover {
+    background-color: #E6CA8E;
 }
 
 #hint-btn * {
     cursor: pointer;
+    font-family: 'Monospace', monospace;
+    color: #000;
 }
 
 #hint-btn span {
@@ -217,7 +226,6 @@
 
 #hint-btn-title {
     font-size: 1.5vmin;
-    font-weight: bold;
 }
 
 #num-hints-remaining {

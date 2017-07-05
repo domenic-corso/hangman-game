@@ -145,7 +145,7 @@ GameplayPanel.updateIncorrectLetters = function(incorrectLetters) {
 */
 GameplayPanel.singlePlayerMode = function(b) {
     if (b) {
-        this.e.twoPlayerStats.style.display = "none";
+        this.e.twoPlayerStats.style.display = "flex";
     }
     else {
         this.e.twoPlayerStats.style.display = "flex";
