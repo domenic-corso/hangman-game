@@ -7,6 +7,19 @@ let DefaultUI = {
         enterWord: EnterWordPanel,
         gameplay: GameplayPanel
     },
+    e: {
+        homeBtn: document.getElementById("home-btn"),
+        muteBtn: document.getElementById("mute-btn")
+    },
+    evtCallbacks: {
+        homeButtonPressed: function(e) {
+            this.hangmanGame.reset();
+            this.showPanel(this.panels.menu);
+        },
+        muteButtonPressed: function (e) {
+            console.log("mute button was pressed");
+        }
+    },
     activePanel: null
 };
 
@@ -20,8 +33,15 @@ DefaultUI.init = function(hangmanGame) {
         }
     }
     
+    this.addEventListeners();
+    
     /* Show the menu panel at first. */
     this.showPanel(this.panels.menu);
+};
+
+DefaultUI.addEventListeners = function() {
+    this.e.homeBtn.addEventListener("click", this.evtCallbacks.homeButtonPressed.bind(this));
+    this.e.muteBtn.addEventListener("click", this.evtCallbacks.muteButtonPressed.bind(this));
 };
 
 /*

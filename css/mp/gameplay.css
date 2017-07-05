@@ -44,6 +44,27 @@
     border-left: 1px solid #000;
 }
 
+/* Top Bar */
+#top-bar > div {
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: 1%;
+}
+
+#hangman-logo {
+    height: 100%;
+}
+
+#top-bar-buttons-cont {
+    text-align: right;
+}
+
+.top-bar-btn {
+    height: 100%;
+    padding: 0 2%;
+}
+
 /* Two Player Stats */
 #mpc-gameplay-p1-stats-cont, #mpc-gameplay-p2-stats-cont {
     width: 50%;

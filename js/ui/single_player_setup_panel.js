@@ -14,7 +14,6 @@ SinglePlayerSetupPanel.init = function(hangmanGame) {
 
 SinglePlayerSetupPanel.onShow = function() {
     let categories = SinglePlayerGame.categories;
-    console.log(this.e.buttonsCont);
     
     JSAK.removeAllChildren(this.e.buttonsCont);
     
