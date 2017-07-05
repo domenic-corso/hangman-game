@@ -17,6 +17,11 @@ DefaultUICallback.updateGuess = function(guessObj) {
     gameplayPanel.hintButtonEnabled(!guessObj.tooLateToUseHint());
     gameplayPanel.updateHints(guessObj.hintsRemaining);
     gameplayPanel.setOverallState(guessObj.getOverallState());
+    
+    if (guessObj.getOverallState() == Guess.OverallState.FAIL) {
+        gameplayPanel.revealFullWord(guessObj.word);
+    }
+    
     gameplayPanel.nextRoundButtonEnabled(guessObj.gameMode.roundFinished);
     
     if (guessObj.gameMode instanceof TwoPlayerGame) {

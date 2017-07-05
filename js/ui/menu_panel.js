@@ -1,4 +1,5 @@
 let MenuPanel = {
+    parentUI: null,
     e: {
         panel: document.getElementById("mp-menu"),
         btnSinglePlayer: document.getElementById("menu-btn-single-player"),
@@ -7,18 +8,19 @@ let MenuPanel = {
     },
     evtCallbacks: {
         pressedSinglePlayer: function(e) {
-            console.info("Single Player pressed.");
+            this.parentUI.showPanel(this.parentUI.panels.singlePlayerSetup);
         },
         pressedTwoPlayer: function(e) {
-            console.info("Two Player pressed.");
+            this.parentUI.showPanel(this.parentUI.panels.twoPlayerSetup);
         },
         pressedViewCode: function(e) {
-            console.info("View Code pressed.");
+            window.open("https://bitbucket.org/domcorso/simple-hangman");
         }
     }
 };
 
-MenuPanel.init = function() {
+MenuPanel.init = function(hangmanGame, parentUI) {
+    this.parentUI = parentUI;
     this.addEventListeners();
 };
 
@@ -27,7 +29,7 @@ MenuPanel.onShow = function() {
 };
 
 MenuPanel.addEventListeners = function() {
-    this.e.btnSinglePlayer.addEventListener("click", this.evtCallbacks.pressedSinglePlayer);
-    this.e.btnTwoPlayer.addEventListener("click", this.evtCallbacks.pressedTwoPlayer);
-    this.e.btnViewCode.addEventListener("click", this.evtCallbacks.pressedViewCode);
+    this.e.btnSinglePlayer.addEventListener("click", this.evtCallbacks.pressedSinglePlayer.bind(this));
+    this.e.btnTwoPlayer.addEventListener("click", this.evtCallbacks.pressedTwoPlayer.bind(this));
+    this.e.btnViewCode.addEventListener("click", this.evtCallbacks.pressedViewCode.bind(this));
 };
