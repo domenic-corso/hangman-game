@@ -115,7 +115,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 15%;
+    height: 20%;
     padding: 1.5%;
 }
 
@@ -157,7 +157,13 @@
 
 /* Progress Visual */
 #mpc-gameplay-progress-visual {
-    height: 75%;
+    height: 70%;
+    text-align: center;
+}
+
+#progress-image {
+    height: 100%;
+    border: 1px solid #000;
 }
 
 /* Next Round */

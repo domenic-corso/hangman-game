@@ -1,9 +1,13 @@
 let GameplayPanel = {
     hangmanGame: null,
     parentUI: null,
+    imagesRootDir: "../ui_images/",
+    chancesLeftFilePrefix: "pv_chances_left_",
+    chancesLeftFileExt: ".png",
     e: {
         panel: document.getElementById("mp-gameplay"),
         wordProgress: document.getElementById("mpc-gameplay-word-progress"),
+        progressImage: document.getElementById("progress-image"),
         incorrectLettersList: document.getElementById("incorrect-letters-list"),
         twoPlayerStats: document.getElementById("mpc-gameplay-tpstats-cont"),
         player1Name: document.getElementById("player1-name"),
@@ -108,6 +112,16 @@ GameplayPanel.updateWordProgress = function(word, states) {
     }
 };
 
+GameplayPanel.updateProgressVisual = function(chancesLeft) {
+    let prefix = this.chancesLeftFilePrefix;
+    let ext = this.chancesLeftFileExt;
+    let rootDir = this.imagesRootDir;
+    
+    let imgSrc = rootDir + prefix + chancesLeft + ext;
+    
+    this.e.progressImage.setAttribute("src", imgSrc);
+};
+
 GameplayPanel.revealFullWord = function(word) {
     JSAK.removeAllChildren(this.e.wordProgress);
     
@@ -177,7 +191,7 @@ GameplayPanel.disableKey = function(letter) {
 */
 GameplayPanel.singlePlayerMode = function(b) {
     if (b) {
-        this.e.twoPlayerStats.style.display = "flex";
+        this.e.twoPlayerStats.style.display = "none";
     }
     else {
         this.e.twoPlayerStats.style.display = "flex";

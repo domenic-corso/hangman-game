@@ -12,6 +12,7 @@ DefaultUICallback.updateGuess = function(guessObj) {
     this.ui.showPanel(gameplayPanel);
     
     gameplayPanel.updateWordProgress(guessObj.word, guessObj.wordProgress);
+    gameplayPanel.updateProgressVisual(guessObj.chancesLeft);
     gameplayPanel.updateIncorrectLetters(guessObj.incorrectLetters);
     gameplayPanel.disableAllGuessedLetters(guessObj.incorrectLetters.concat(guessObj.correctLetters));
     gameplayPanel.singlePlayerMode(guessObj.gameMode instanceof SinglePlayerGame);
