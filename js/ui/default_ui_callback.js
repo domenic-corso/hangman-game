@@ -13,6 +13,7 @@ DefaultUICallback.updateGuess = function(guessObj) {
     
     gameplayPanel.updateWordProgress(guessObj.word, guessObj.wordProgress);
     gameplayPanel.updateIncorrectLetters(guessObj.incorrectLetters);
+    gameplayPanel.disableAllGuessedLetters(guessObj.incorrectLetters.concat(guessObj.correctLetters));
     gameplayPanel.singlePlayerMode(guessObj.gameMode instanceof SinglePlayerGame);
     gameplayPanel.hintButtonEnabled(!guessObj.tooLateToUseHint());
     gameplayPanel.updateHints(guessObj.hintsRemaining);

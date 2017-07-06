@@ -36,7 +36,7 @@ DefaultUI.init = function(hangmanGame) {
     this.addEventListeners();
     
     /* Show the menu panel at first. */
-    this.showPanel(this.panels.twoPlayerSetup);
+    this.showPanel(this.panels.menu);
 };
 
 DefaultUI.addEventListeners = function() {

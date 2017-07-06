@@ -140,6 +140,38 @@ GameplayPanel.updateIncorrectLetters = function(incorrectLetters) {
     }
 };
 
+GameplayPanel.disableAllGuessedLetters = function(guessedLetters) {
+    /* Enable all of them first to ensure it's accurate with the Guess. */
+    for (let i = 0; i < this.e.keys.length; i++) {
+        this.e.keys[i].disabled = false;
+    }
+    
+    for (let i = 0; i < guessedLetters.length; i++) {
+        this.disableKey(guessedLetters[i]);
+    }
+};
+
+GameplayPanel.getKeyByLetter = function(letter) {
+    letter = letter.toUpperCase();
+    
+    let keyElem, html, htmlLetter;
+    for (let i = 0; i < this.e.keys.length; i++) {
+        keyElem = this.e.keys[i];
+        html = keyElem.innerHTML;
+        htmlLetter = html.toUpperCase();
+        
+        if (htmlLetter == letter) return keyElem;
+    }
+};
+
+GameplayPanel.disableKey = function(letter) {
+    let keyElem = this.getKeyByLetter(letter);
+    
+    if (keyElem instanceof Node) {
+        keyElem.disabled = true;
+    }
+};
+
 /*
     Shows/Hides the two-player scoreboard depending on the mode.
 */

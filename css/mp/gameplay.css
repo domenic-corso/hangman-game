@@ -198,6 +198,10 @@
     border-radius: 1vmin;
 }
 
+.mpc-keyboard-key:disabled {
+    opacity: 0.3;
+}
+
 .mpc-keyboard-key:last-of-type {
     margin-right: 0;
 }
