@@ -8,16 +8,12 @@ let DefaultUI = {
         gameplay: GameplayPanel
     },
     e: {
-        homeBtn: document.getElementById("home-btn"),
-        muteBtn: document.getElementById("mute-btn")
+        homeBtn: document.getElementById("home-btn")
     },
     evtCallbacks: {
         homeButtonPressed: function(e) {
             this.hangmanGame.reset();
             this.showPanel(this.panels.menu);
-        },
-        muteButtonPressed: function (e) {
-            console.log("mute button was pressed");
         }
     },
     activePanel: null
@@ -25,23 +21,22 @@ let DefaultUI = {
 
 DefaultUI.init = function(hangmanGame) {
     this.hangmanGame = hangmanGame;
-    
+
     /* Initialize all the panels. */
     for (p in this.panels) {
         if (this.panels.hasOwnProperty(p)) {
             this.panels[p].init(this.hangmanGame, this);
         }
     }
-    
+
     this.addEventListeners();
-    
+
     /* Show the menu panel at first. */
     this.showPanel(this.panels.menu);
 };
 
 DefaultUI.addEventListeners = function() {
     this.e.homeBtn.addEventListener("click", this.evtCallbacks.homeButtonPressed.bind(this));
-    this.e.muteBtn.addEventListener("click", this.evtCallbacks.muteButtonPressed.bind(this));
 };
 
 /*
@@ -54,24 +49,24 @@ DefaultUI.showPanel = function(panel) {
         console.error("Panel not defined in DefaultUI");
         return;
     }
-    
+
     /* Don't do anything if this panel is already displayed. */
     if (this.activePanel === panel) {
         return;
     }
-    
+
     /* Hide all other panels. */
     let panelElements = document.querySelectorAll(".main-panel");
     for (let i = 0; i < panelElements.length; i++) {
         panelElements[i].style.display = "none";
     }
-    
+
     /* Show target panel */
     panel.e.panel.style.display = "block";
-    
+
     /* Tell the panel it is now active */
     panel.onShow();
-    
+
     this.activePanel = panel;
 };
 
@@ -80,13 +75,13 @@ DefaultUI.showPanel = function(panel) {
 */
 DefaultUI.panelExists = function(panel) {
     let panelExists = false;
-    
+
     for (p in this.panels) {
         if (this.panels[p] === panel) {
             panelExists = true;
         }
     }
-    
+
     return panelExists;
 };
 

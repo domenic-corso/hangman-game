@@ -1,16 +1,7 @@
 /*
-    The main script file that will run everything once the page has finished 
+    The main script file that will run everything once the page has finished
     loading.
 */
-
-function _dev1() {
-    sp1 = new SinglePlayerGame(Hangman.uiCallback, SinglePlayerGame.categories[0]);
-    Hangman.activeGameMode = sp1;
-    sp1.start();
-    
-    sp1.guessObj.tryLetter("x");
-    sp1.guessObj.tryLetter("q");
-}
 
 let Hangman = {
     ui: DefaultUI,
@@ -32,7 +23,6 @@ Hangman.loadCategories = function() {
 Hangman.loadGUI = function() {
     this.ui.init(this);
     this.uiCallback.setUI(this.ui);
-    _dev1();
 };
 
 Hangman.reset = function() {
