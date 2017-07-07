@@ -1,7 +1,7 @@
 let GameplayPanel = {
     hangmanGame: null,
     parentUI: null,
-    imagesRootDir: "../ui_images/",
+    imagesRootDir: "ui_images/",
     chancesLeftFilePrefix: "pv_chances_left_",
     chancesLeftFileExt: ".png",
     e: {
@@ -30,7 +30,7 @@ let GameplayPanel = {
         nextRoundPressed: function(e) {
             /*
                 If a single player game is being played, start the next round
-                as it does not require any paramaters. A two player game 
+                as it does not require any paramaters. A two player game
                 however should switch to the word insertion panel which will
                 then do the job of calling nextRound()
             */
@@ -51,7 +51,7 @@ GameplayPanel.init = function(hangmanGame, parentUI) {
 };
 
 GameplayPanel.onShow = function() {
-    
+
 };
 
 GameplayPanel.addEventListeners = function() {
@@ -59,17 +59,17 @@ GameplayPanel.addEventListeners = function() {
     for (let i = 0; i < this.e.keys.length; i++) {
         this.e.keys[i].addEventListener("click", this.evtCallbacks.keyPressed.bind(this));
     }
-    
+
     /* For the hint button. */
     this.e.hintButton.addEventListener("click", this.evtCallbacks.hintPressed.bind(this));
-    
+
     /* For the next round button. */
     this.e.nextRoundButton.addEventListener("click", this.evtCallbacks.nextRoundPressed.bind(this));
 };
 
 GameplayPanel.getLetterProgressDIV = function(letter, state) {
     let elem = document.createElement("div");
-    
+
     /* Use the appropriate class based on state of letter. */
     let className;
     switch (state) {
@@ -83,9 +83,9 @@ GameplayPanel.getLetterProgressDIV = function(letter, state) {
             className = "letter-progress-space";
             break;
     }
-    
+
     elem.className = className;
-    
+
     /* Add the letter to the HTML if it as been guessed. */
     if (state == Guess.LetterStates.GUESSED) {
         elem.innerHTML = letter.toUpperCase();
@@ -93,7 +93,7 @@ GameplayPanel.getLetterProgressDIV = function(letter, state) {
     else {
         elem.innerHTML = "&nbsp;";
     }
-    
+
     return elem;
 };
 
@@ -104,7 +104,7 @@ GameplayPanel.getLetterProgressDIV = function(letter, state) {
 GameplayPanel.updateWordProgress = function(word, states) {
     /* Clear the current word progress. */
     JSAK.removeAllChildren(this.e.wordProgress);
-    
+
     let toAppend;
     for (let i = 0; i < states.length; i++) {
         toAppend = this.getLetterProgressDIV(word[i], states[i]);
@@ -116,15 +116,15 @@ GameplayPanel.updateProgressVisual = function(chancesLeft) {
     let prefix = this.chancesLeftFilePrefix;
     let ext = this.chancesLeftFileExt;
     let rootDir = this.imagesRootDir;
-    
+
     let imgSrc = rootDir + prefix + chancesLeft + ext;
-    
+
     this.e.progressImage.setAttribute("src", imgSrc);
 };
 
 GameplayPanel.revealFullWord = function(word) {
     JSAK.removeAllChildren(this.e.wordProgress);
-    
+
     for (let i = 0; i < word.length; i++) {
         toAppend = this.getLetterProgressDIV(word[i], Guess.LetterStates.GUESSED);
         this.e.wordProgress.appendChild(toAppend);
@@ -132,21 +132,21 @@ GameplayPanel.revealFullWord = function(word) {
 };
 
 /*
-    Adds the letters that were incorrectly guessed on the side of the 
+    Adds the letters that were incorrectly guessed on the side of the
     panel.
 */
 GameplayPanel.updateIncorrectLetters = function(incorrectLetters) {
     JSAK.removeAllChildren(this.e.incorrectLettersList);
-    
+
     let getIncorrectLetterDIV = function(letter) {
         let elem = document.createElement("div");
-        
+
         elem.innerHTML = letter.toUpperCase();
         elem.className = "mpc-incorrect-letter";
-        
+
         return elem;
     };
-    
+
     let toAppend;
     for (let i = 0; i < incorrectLetters.length; i++) {
         toAppend = getIncorrectLetterDIV(incorrectLetters[i]);
@@ -159,7 +159,7 @@ GameplayPanel.disableAllGuessedLetters = function(guessedLetters) {
     for (let i = 0; i < this.e.keys.length; i++) {
         this.e.keys[i].disabled = false;
     }
-    
+
     for (let i = 0; i < guessedLetters.length; i++) {
         this.disableKey(guessedLetters[i]);
     }
@@ -167,20 +167,20 @@ GameplayPanel.disableAllGuessedLetters = function(guessedLetters) {
 
 GameplayPanel.getKeyByLetter = function(letter) {
     letter = letter.toUpperCase();
-    
+
     let keyElem, html, htmlLetter;
     for (let i = 0; i < this.e.keys.length; i++) {
         keyElem = this.e.keys[i];
         html = keyElem.innerHTML;
         htmlLetter = html.toUpperCase();
-        
+
         if (htmlLetter == letter) return keyElem;
     }
 };
 
 GameplayPanel.disableKey = function(letter) {
     let keyElem = this.getKeyByLetter(letter);
-    
+
     if (keyElem instanceof Node) {
         keyElem.disabled = true;
     }
@@ -208,7 +208,7 @@ GameplayPanel.hintButtonEnabled = function(b) {
 */
 GameplayPanel.updateHints = function(hintsRemaining) {
     this.e.hintsRemainingText.innerHTML = hintsRemaining;
-    
+
     /* Disable button if no hints remaining. */
     if (!this.e.hintButton.disabled) {
         if (hintsRemaining == 0) {
@@ -237,7 +237,7 @@ GameplayPanel.setOverallState = function(overallState) {
             className = "complete";
             break;
     }
-    
+
     this.e.wordProgress.className = className;
 };
 
@@ -248,7 +248,7 @@ GameplayPanel.nextRoundButtonEnabled = function(b) {
     } else {
         this.e.nextRoundButton.disabled = true;
         this.e.nextRoundButton.style.display = "none";
-        
+
     }
 };
 
